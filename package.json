@@ -19,12 +19,15 @@
     "@tiptap/pm": "^2.10.2",
     "@tiptap/react": "^2.10.2",
     "@tiptap/starter-kit": "^2.10.2",
+    "clsx": "^2.1.1",
+    "lucide-react": "^0.469.0",
     "next": "15.0.3",
     "prettier": "^3.4.2",
     "react": "19.0.0-rc-66855b96-20241106",
     "react-dom": "19.0.0-rc-66855b96-20241106",
     "sass": "^1.83.0",
-    "tiptap-extension-resize-image": "^1.2.1"
+    "tiptap-extension-resize-image": "^1.2.1",
+    "zustand": "^5.0.1"
   },
   "devDependencies": {
     "@types/node": "^20",
