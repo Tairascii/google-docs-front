@@ -8,7 +8,7 @@ const __dirname = path.dirname(__filename);
 
 const nextConfig: NextConfig = {
   sassOptions: {
-    includePaths: [path.join(__dirname, "src/styles")],
+    includePaths: [path.join(__dirname, "src/app/styles")],
     prependData: `
       @import "mixins.scss";
       @import "vars.scss";

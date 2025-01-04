@@ -1,0 +1,15 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+body {
+  box-sizing: border-box;
+  padding: 0;
+
+  @include mobile {
+    padding: 0;
+  }
+}
