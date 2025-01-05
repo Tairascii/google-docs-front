@@ -15,6 +15,9 @@ import {
 } from 'lucide-react'
 import { ToolbarButton } from '@/app/ui/ToolbarButton'
 import { useEditorStore } from '@/app/store/useEditorStore'
+import { FontFamilyButton } from '@/app/ui/FontFamilyButton'
+import { HeadingButton } from '@/app/ui/HeadingButton'
+import { type Level } from '@tiptap/extension-heading'
 import styles from './Toolbar.module.scss'
 
 export const Toolbar = () => {
@@ -101,12 +104,36 @@ export const Toolbar = () => {
     },
   ]
 
+  const currentFont = editor?.getAttributes('textStyle').fontFamily
+  const onFontChange = (value: string) => {
+    editor?.chain().setFontFamily(value).run()
+  }
+
+  const onHeadingChange = (level: number) => {
+    if (level === 0) {
+      editor?.chain().setParagraph().run()
+      return
+    }
+    editor?.chain().focus().toggleHeading({ level: level as Level }).run()
+  }
+
+  const getCurrentHeading = (): string => {
+    for(let level = 1; level <= 5; level++) {
+      if(editor?.isActive('heading', {level})) {
+        return `Heading ${level}`
+      }
+    }
+    return 'Normal text'
+  }
+
   return (
     <div className={styles.container}>
       {baseTools.map((item) => (
         <ToolbarButton key={item.id} {...item} />
       ))}
       <hr className={styles.separator} />
+      <HeadingButton currentHeading={getCurrentHeading()} onHeadingChange={onHeadingChange} />
+      <FontFamilyButton onFontChange={onFontChange} currentFont={currentFont} />
       {fontTools.map((item) => (
         <ToolbarButton key={item.id} {...item} />
       ))}
