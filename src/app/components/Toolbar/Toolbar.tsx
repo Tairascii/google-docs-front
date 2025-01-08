@@ -19,6 +19,9 @@ import { FontFamilyButton } from '@/app/ui/FontFamilyButton'
 import { HeadingButton } from '@/app/ui/HeadingButton'
 import { type Level } from '@tiptap/extension-heading'
 import styles from './Toolbar.module.scss'
+import { type ColorResult } from 'react-color'
+import { TextColorButton } from '@/app/ui/TextColorButton'
+import { TextHighlightButton } from '@/app/ui/TextHighlightButton'
 
 export const Toolbar = () => {
   const { editor } = useEditorStore()
@@ -114,16 +117,30 @@ export const Toolbar = () => {
       editor?.chain().setParagraph().run()
       return
     }
-    editor?.chain().focus().toggleHeading({ level: level as Level }).run()
+    editor
+      ?.chain()
+      .focus()
+      .toggleHeading({ level: level as Level })
+      .run()
   }
 
   const getCurrentHeading = (): string => {
-    for(let level = 1; level <= 5; level++) {
-      if(editor?.isActive('heading', {level})) {
+    for (let level = 1; level <= 5; level++) {
+      if (editor?.isActive('heading', { level })) {
         return `Heading ${level}`
       }
     }
     return 'Normal text'
+  }
+
+  const currentColor = editor?.getAttributes('textStyle').color
+  const onColorChange = (color: ColorResult) => {
+    editor?.chain().focus().setColor(color.hex).run()
+  }
+
+  const currentHighlight = editor?.getAttributes('highlight').color
+  const onHighlightChange = (color: ColorResult) => {
+    editor?.chain().focus().setHighlight({ color: color.hex }).run()
   }
 
   return (
@@ -132,11 +149,22 @@ export const Toolbar = () => {
         <ToolbarButton key={item.id} {...item} />
       ))}
       <hr className={styles.separator} />
-      <HeadingButton currentHeading={getCurrentHeading()} onHeadingChange={onHeadingChange} />
+      <HeadingButton
+        currentHeading={getCurrentHeading()}
+        onHeadingChange={onHeadingChange}
+      />
       <FontFamilyButton onFontChange={onFontChange} currentFont={currentFont} />
       {fontTools.map((item) => (
         <ToolbarButton key={item.id} {...item} />
       ))}
+      <TextColorButton
+        currentColor={currentColor}
+        onColorChange={onColorChange}
+      />
+      <TextHighlightButton
+        onHighlightChange={onHighlightChange}
+        currentHighlight={currentHighlight}
+      />
       <hr className={styles.separator} />
       {mediaTools.map((item) => (
         <ToolbarButton key={item.id} {...item} />
