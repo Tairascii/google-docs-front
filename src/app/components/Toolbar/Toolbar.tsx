@@ -18,10 +18,11 @@ import { useEditorStore } from '@/app/store/useEditorStore'
 import { FontFamilyButton } from '@/app/ui/FontFamilyButton'
 import { HeadingButton } from '@/app/ui/HeadingButton'
 import { type Level } from '@tiptap/extension-heading'
-import styles from './Toolbar.module.scss'
 import { type ColorResult } from 'react-color'
 import { TextColorButton } from '@/app/ui/TextColorButton'
 import { TextHighlightButton } from '@/app/ui/TextHighlightButton'
+import { LinkButton } from '@/app/ui/LinkButton'
+import styles from './Toolbar.module.scss'
 
 export const Toolbar = () => {
   const { editor } = useEditorStore()
@@ -143,6 +144,11 @@ export const Toolbar = () => {
     editor?.chain().focus().setHighlight({ color: color.hex }).run()
   }
 
+  const currentLink = editor?.getAttributes('link').href ?? ''
+  const onLinkChange = (href: string) => {
+    editor?.chain().focus().extendMarkRange('link').setLink({ href }).run()
+  }
+
   return (
     <div className={styles.container}>
       {baseTools.map((item) => (
@@ -166,6 +172,7 @@ export const Toolbar = () => {
         currentHighlight={currentHighlight}
       />
       <hr className={styles.separator} />
+      <LinkButton onLinkChange={onLinkChange} currentLink={currentLink} />
       {mediaTools.map((item) => (
         <ToolbarButton key={item.id} {...item} />
       ))}
