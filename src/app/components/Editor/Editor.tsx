@@ -18,6 +18,7 @@ import Highlight from '@tiptap/extension-highlight'
 import Link from '@tiptap/extension-link'
 import { useEditorStore } from '@/app/store/useEditorStore'
 import styles from './Editor.module.scss'
+import TextAlign from '@tiptap/extension-text-align'
 
 export const Editor = () => {
   const { setEditor } = useEditorStore()
@@ -59,14 +60,17 @@ export const Editor = () => {
       TableRow,
       ImageResize,
       StarterKit,
+      Underline,
+      Color,
       Link.configure({
         openOnClick: false,
         autolink: true,
         defaultProtocol: 'https',
       }),
-      Underline,
+      TextAlign.configure({
+        types: ['heading', 'paragraph'],
+      }),
       Highlight.configure({ multicolor: true }),
-      Color,
     ],
     editorProps: {
       attributes: {

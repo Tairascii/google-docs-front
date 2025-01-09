@@ -4,6 +4,8 @@ import { Section } from './types'
 import {
   BoldIcon,
   ItalicIcon,
+  ListIcon,
+  ListOrderedIcon,
   ListTodoIcon,
   MessageSquarePlusIcon,
   PrinterIcon,
@@ -24,6 +26,7 @@ import { TextHighlightButton } from '@/app/ui/TextHighlightButton'
 import { LinkButton } from '@/app/ui/LinkButton'
 import { ImageButton } from '@/app/ui/ImageButton'
 import styles from './Toolbar.module.scss'
+import { AlignButton } from '@/app/ui/AlignButton'
 
 export const Toolbar = () => {
   const { editor } = useEditorStore()
@@ -109,6 +112,23 @@ export const Toolbar = () => {
     },
   ]
 
+  const listTools: Section[] = [
+    {
+      id: 'unorderedList',
+      label: 'Bullet list',
+      icon: ListIcon,
+      onClick: () => editor?.chain().focus().toggleBulletList().run(),
+      isActive: editor?.isActive('bulletList'),
+    },
+    {
+      id: 'orderedList',
+      label: 'Order list',
+      icon: ListOrderedIcon,
+      onClick: () => editor?.chain().focus().toggleOrderedList().run(),
+      isActive: editor?.isActive('orderedList'),
+    },
+  ]
+
   const currentFont = editor?.getAttributes('textStyle').fontFamily
   const onFontChange = (value: string) => {
     editor?.chain().setFontFamily(value).run()
@@ -154,6 +174,18 @@ export const Toolbar = () => {
     editor?.chain().focus().setImage({ src }).run()
   }
 
+  const currentAlignment = (): string => {
+    if (editor?.isActive({ textAlign: 'left' })) return 'left'
+    if (editor?.isActive({ textAlign: 'right' })) return 'right'
+    if (editor?.isActive({ textAlign: 'center' })) return 'center'
+    if (editor?.isActive({ textAlign: 'justify' })) return 'justify'
+    return 'left'
+  }
+
+  const onAlignmentChange = (val: string) => {
+    editor?.chain().focus().setTextAlign(val).run()
+  }
+
   return (
     <div className={styles.container}>
       {baseTools.map((item) => (
@@ -180,6 +212,14 @@ export const Toolbar = () => {
       <LinkButton onLinkChange={onLinkChange} currentLink={currentLink} />
       <ImageButton onImageChange={onImageChange} />
       {mediaTools.map((item) => (
+        <ToolbarButton key={item.id} {...item} />
+      ))}
+      <hr className={styles.separator} />
+      <AlignButton
+        onAlignmentChange={onAlignmentChange}
+        currentAlignment={currentAlignment()}
+      />
+      {listTools.map((item) => (
         <ToolbarButton key={item.id} {...item} />
       ))}
     </div>
