@@ -22,6 +22,7 @@ import { type ColorResult } from 'react-color'
 import { TextColorButton } from '@/app/ui/TextColorButton'
 import { TextHighlightButton } from '@/app/ui/TextHighlightButton'
 import { LinkButton } from '@/app/ui/LinkButton'
+import { ImageButton } from '@/app/ui/ImageButton'
 import styles from './Toolbar.module.scss'
 
 export const Toolbar = () => {
@@ -149,6 +150,10 @@ export const Toolbar = () => {
     editor?.chain().focus().extendMarkRange('link').setLink({ href }).run()
   }
 
+  const onImageChange = (src: string) => {
+    editor?.chain().focus().setImage({ src }).run()
+  }
+
   return (
     <div className={styles.container}>
       {baseTools.map((item) => (
@@ -173,6 +178,7 @@ export const Toolbar = () => {
       />
       <hr className={styles.separator} />
       <LinkButton onLinkChange={onLinkChange} currentLink={currentLink} />
+      <ImageButton onImageChange={onImageChange} />
       {mediaTools.map((item) => (
         <ToolbarButton key={item.id} {...item} />
       ))}
