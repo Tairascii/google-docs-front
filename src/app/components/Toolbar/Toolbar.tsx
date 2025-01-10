@@ -28,6 +28,7 @@ import { ImageButton } from '@/app/ui/ImageButton'
 import { AlignButton } from '@/app/ui/AlignButton'
 import { FontSizeButton } from '@/app/ui/FontSizeButton'
 import styles from './Toolbar.module.scss'
+import { LineHeightButton } from '@/app/ui/LineHeightButton'
 
 export const Toolbar = () => {
   const { editor } = useEditorStore()
@@ -192,6 +193,11 @@ export const Toolbar = () => {
     editor?.chain().focus().setFontSize(`${val}px`).run()
   }
 
+  const currentLineHeight = editor?.getAttributes('paragraph').lineHeight
+  const onLineHeightChange = (val: string) => {
+    editor?.chain().focus().setLineHeight(val).run()
+  }
+
   return (
     <div className={styles.container}>
       {baseTools.map((item) => (
@@ -231,6 +237,10 @@ export const Toolbar = () => {
       <AlignButton
         onAlignmentChange={onAlignmentChange}
         currentAlignment={currentAlignment()}
+      />
+      <LineHeightButton
+        currentLineHeight={currentLineHeight}
+        onLineHeightChange={onLineHeightChange}
       />
       {listTools.map((item) => (
         <ToolbarButton key={item.id} {...item} />
