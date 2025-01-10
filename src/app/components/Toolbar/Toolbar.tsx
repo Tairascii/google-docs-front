@@ -25,8 +25,9 @@ import { TextColorButton } from '@/app/ui/TextColorButton'
 import { TextHighlightButton } from '@/app/ui/TextHighlightButton'
 import { LinkButton } from '@/app/ui/LinkButton'
 import { ImageButton } from '@/app/ui/ImageButton'
-import styles from './Toolbar.module.scss'
 import { AlignButton } from '@/app/ui/AlignButton'
+import { FontSizeButton } from '@/app/ui/FontSizeButton'
+import styles from './Toolbar.module.scss'
 
 export const Toolbar = () => {
   const { editor } = useEditorStore()
@@ -186,6 +187,11 @@ export const Toolbar = () => {
     editor?.chain().focus().setTextAlign(val).run()
   }
 
+  const currentFontSize = editor?.getAttributes('textStyle').fontSize
+  const onFontSizeChange = (val: string) => {
+    editor?.chain().focus().setFontSize(`${val}px`).run()
+  }
+
   return (
     <div className={styles.container}>
       {baseTools.map((item) => (
@@ -196,7 +202,14 @@ export const Toolbar = () => {
         currentHeading={getCurrentHeading()}
         onHeadingChange={onHeadingChange}
       />
+      <hr className={styles.separator} />
       <FontFamilyButton onFontChange={onFontChange} currentFont={currentFont} />
+      <hr className={styles.separator} />
+      <FontSizeButton
+        currentSize={currentFontSize}
+        onSizeChange={onFontSizeChange}
+      />
+      <hr className={styles.separator} />
       {fontTools.map((item) => (
         <ToolbarButton key={item.id} {...item} />
       ))}

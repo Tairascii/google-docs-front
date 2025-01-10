@@ -14,11 +14,12 @@ import Underline from '@tiptap/extension-underline'
 import FontFamily from '@tiptap/extension-font-family'
 import TextStyle from '@tiptap/extension-text-style'
 import { Color } from '@tiptap/extension-color'
+import { FontSizeExtension } from '@/app/extensions/fontSize'
 import Highlight from '@tiptap/extension-highlight'
+import TextAlign from '@tiptap/extension-text-align'
 import Link from '@tiptap/extension-link'
 import { useEditorStore } from '@/app/store/useEditorStore'
 import styles from './Editor.module.scss'
-import TextAlign from '@tiptap/extension-text-align'
 
 export const Editor = () => {
   const { setEditor } = useEditorStore()
@@ -61,6 +62,7 @@ export const Editor = () => {
       ImageResize,
       StarterKit,
       Underline,
+      FontSizeExtension,
       Color,
       Link.configure({
         openOnClick: false,
