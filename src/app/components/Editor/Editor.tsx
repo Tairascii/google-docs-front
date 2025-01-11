@@ -20,12 +20,14 @@ import Highlight from '@tiptap/extension-highlight'
 import TextAlign from '@tiptap/extension-text-align'
 import Link from '@tiptap/extension-link'
 import { useEditorStore } from '@/app/store/useEditorStore'
+import { Ruler } from '../Ruler'
 import styles from './Editor.module.scss'
 
 export const Editor = () => {
   const { setEditor } = useEditorStore()
 
   const editor = useEditor({
+    immediatelyRender: false,
     onCreate({ editor }) {
       setEditor(editor)
     },
@@ -102,6 +104,7 @@ export const Editor = () => {
 
   return (
     <div className={styles.container}>
+      <Ruler />
       <div className={styles.wrapper}>
         <EditorContent editor={editor} />
       </div>
