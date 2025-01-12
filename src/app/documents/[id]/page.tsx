@@ -1,6 +1,7 @@
-import { Editor } from '@/app/components/Editor'
+import { Editor } from '@/components/Editor'
 import styles from './page.module.scss'
-import { Toolbar } from '@/app/components/Toolbar'
+import { Toolbar } from '@/components/Toolbar'
+import { DocumentNavbar } from '@/components/DocumentNavbar'
 
 interface DocumentDetailProps {
   params: Promise<{ id: string }>
@@ -9,7 +10,10 @@ interface DocumentDetailProps {
 const DocumentDetail = async ({ params }: DocumentDetailProps) => {
   return (
     <div className={styles.container}>
-      <Toolbar />
+      <div className={styles.header}>
+        <DocumentNavbar />
+        <Toolbar />
+      </div>
       <Editor />
     </div>
   )

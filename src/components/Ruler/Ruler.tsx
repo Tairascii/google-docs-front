@@ -1,4 +1,4 @@
-import { RulerButton } from '@/app/ui/RulerButton'
+import { RulerButton } from '@/ui/RulerButton'
 import styles from './Ruler.module.scss'
 import { useRef, useState } from 'react'
 

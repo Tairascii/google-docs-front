@@ -2,7 +2,7 @@
 
 import { type ColorResult, CirclePicker } from 'react-color'
 import { Root, Trigger, Content } from '@radix-ui/react-dropdown-menu'
-import { COLOR_BLACK } from '@/app/constants/TextColorButton'
+import { COLOR_BLACK } from '@/constants/TextColorButton'
 import styles from './TextColorButton.module.scss'
 
 interface TextColorButtonProps {

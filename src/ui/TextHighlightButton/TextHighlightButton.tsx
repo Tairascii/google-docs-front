@@ -2,7 +2,7 @@
 
 import { type ColorResult, CirclePicker } from 'react-color'
 import { Root, Trigger, Content } from '@radix-ui/react-dropdown-menu'
-import { COLOR_WHITE } from '@/app/constants/TextColorButton'
+import { COLOR_WHITE } from '@/constants/TextColorButton'
 import { HighlighterIcon } from 'lucide-react'
 import styles from './TextHighlightButton.module.scss'
 

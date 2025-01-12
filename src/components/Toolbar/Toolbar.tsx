@@ -15,20 +15,20 @@ import {
   UnderlineIcon,
   Undo2Icon,
 } from 'lucide-react'
-import { ToolbarButton } from '@/app/ui/ToolbarButton'
-import { useEditorStore } from '@/app/store/useEditorStore'
-import { FontFamilyButton } from '@/app/ui/FontFamilyButton'
-import { HeadingButton } from '@/app/ui/HeadingButton'
+import { ToolbarButton } from '@/ui/ToolbarButton'
+import { useEditorStore } from '@/store/useEditorStore'
+import { FontFamilyButton } from '@/ui/FontFamilyButton'
+import { HeadingButton } from '@/ui/HeadingButton'
 import { type Level } from '@tiptap/extension-heading'
 import { type ColorResult } from 'react-color'
-import { TextColorButton } from '@/app/ui/TextColorButton'
-import { TextHighlightButton } from '@/app/ui/TextHighlightButton'
-import { LinkButton } from '@/app/ui/LinkButton'
-import { ImageButton } from '@/app/ui/ImageButton'
-import { AlignButton } from '@/app/ui/AlignButton'
-import { FontSizeButton } from '@/app/ui/FontSizeButton'
+import { TextColorButton } from '@/ui/TextColorButton'
+import { TextHighlightButton } from '@/ui/TextHighlightButton'
+import { LinkButton } from '@/ui/LinkButton'
+import { ImageButton } from '@/ui/ImageButton'
+import { AlignButton } from '@/ui/AlignButton'
+import { FontSizeButton } from '@/ui/FontSizeButton'
 import styles from './Toolbar.module.scss'
-import { LineHeightButton } from '@/app/ui/LineHeightButton'
+import { LineHeightButton } from '@/ui/LineHeightButton'
 
 export const Toolbar = () => {
   const { editor } = useEditorStore()
