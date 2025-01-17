@@ -1,5 +1,6 @@
 import { HomeNavbar } from '@/components/HomeNavbar'
 import styles from './page.module.scss'
+import { TemplateGallery } from '@/components/TemplateGallery'
 
 const HomePage = () => {
   return (
@@ -7,7 +8,9 @@ const HomePage = () => {
       <div className={styles.navbarContainer}>
         <HomeNavbar />
       </div>
-      asdfasdf
+      <div className={styles.templateContainer}>
+        <TemplateGallery />
+      </div>
     </div>
   )
 }
