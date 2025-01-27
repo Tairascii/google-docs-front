@@ -15,3 +15,23 @@ export const getDocuments = async (): Promise<any> => {
 
   return response.data
 }
+
+export const createDocument = async (
+  title?: string,
+  initialContent?: string
+): Promise<string> => {
+  const response = await axiosConfig<{ documentId: string }>({
+    url: getApiPath({
+      version: ApiVersionEnum.V1,
+      service: ApiServiceEnum.DOCUMENTS,
+      path: '/create',
+    }),
+    method: 'POST',
+    data: {
+      title,
+      initialContent,
+    },
+  })
+
+  return response.data.documentId
+}

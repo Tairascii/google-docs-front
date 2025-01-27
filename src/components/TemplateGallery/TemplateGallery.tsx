@@ -2,6 +2,10 @@
 
 import Image from 'next/image'
 import styles from './TemplateGallery.module.scss'
+import { useState } from 'react'
+import { createDocument } from '@/api/documents'
+import { useRouter } from 'next/navigation'
+import { UrlEnum } from '@/enums/UrlEnum'
 
 const templates = [
   {
@@ -48,6 +52,21 @@ const templates = [
   },
 ]
 const TemplateGallery = () => {
+  const router = useRouter()
+  const [isCreateLoading, setIsCreateLoading] = useState(false)
+
+  const onTemplateClick = async (title: string, initialContent: string) => {
+    setIsCreateLoading(true)
+    try {
+      const id = await createDocument(title, initialContent)
+      router.push(`${UrlEnum.DOCUMENTS}/${id}`)
+    } catch (err) {
+      console.log(err)
+    } finally {
+      setIsCreateLoading(false)
+    }
+  }
+
   return (
     <div className={styles.container}>
       <div>
@@ -57,7 +76,11 @@ const TemplateGallery = () => {
         <div className={styles.templatesContainer}>
           {templates.map((item) => {
             return (
-              <div className={styles.template} key={item.id}>
+              <div
+                className={styles.template}
+                key={item.id}
+                onClick={() => onTemplateClick(item.title, '')}
+              >
                 <Image
                   src={item.image}
                   alt={item.title}
