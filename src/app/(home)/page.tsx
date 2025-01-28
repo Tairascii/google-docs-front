@@ -1,8 +1,10 @@
 import { HomeNavbar } from '@/components/HomeNavbar'
-import styles from './page.module.scss'
 import { TemplateGallery } from '@/components/TemplateGallery'
+import { DocumentsTable } from '@/components/DocumentsTable'
+import styles from './page.module.scss'
+import { getDocuments } from '@/api/documents'
 
-const HomePage = () => {
+const HomePage = async () => {
   return (
     <div className={styles.container}>
       <div className={styles.navbarContainer}>
@@ -10,6 +12,7 @@ const HomePage = () => {
       </div>
       <div className={styles.templateContainer}>
         <TemplateGallery />
+        <DocumentsTable />
       </div>
     </div>
   )
