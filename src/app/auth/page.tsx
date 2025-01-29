@@ -1,5 +1,7 @@
 import Image from 'next/image'
 import styles from './page.module.scss'
+import Link from 'next/link'
+import { UrlEnum } from '@/enums/UrlEnum'
 
 const AuthPage = () => {
   return (
@@ -17,7 +19,9 @@ const AuthPage = () => {
             Easily create content and collaborate with your team using
             AI-powered documents.
           </p>
-          <button className={styles.button}>Login</button>
+          <Link href={UrlEnum.SIGN_IN}>
+            <button className={styles.button}>Login</button>
+          </Link>
         </div>
         <Image
           alt="cover"

@@ -1,3 +1,4 @@
 export enum UrlEnum {
-  DOCUMENTS = '/documents'
+  DOCUMENTS = '/documents',
+  SIGN_IN = '/auth/sign-in'
 }

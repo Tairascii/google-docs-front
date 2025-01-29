@@ -11,3 +11,8 @@ export interface GoogleDocument {
   roomId: string
 	orgId: string
 }
+
+export interface SignInData {
+  email: string
+  password: string
+}
