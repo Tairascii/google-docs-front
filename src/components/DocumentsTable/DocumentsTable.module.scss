@@ -1,0 +1,68 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.filters {
+  padding: 20px 16px;
+}
+
+.recentLabel {
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.icon {
+  padding: 14px;
+  padding-left: 16px;
+}
+
+.title {
+  display: inline-block;
+  line-height: 20px;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  vertical-align: top;
+  white-space: nowrap;
+  font-weight: 500;
+  color: rgb(32, 33, 36);
+  font-size: 14px;
+  margin: 0 16px;
+}
+
+.titleWrapper {
+  width: 45%;
+}
+
+.docRow {
+  text-decoration: none;
+  border-radius: 24px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+
+  &:hover {
+    background-color: rgb(168 199 250 / 0.3);
+  }
+}
+
+.main {
+  width: 930px;
+}
+
+.createdAt {
+  color: rgb(95, 99, 104);
+  letter-spacing: 0.2px;
+  line-height: 20px;
+  font-size: 14px;
+  font-weight: 400;
+}

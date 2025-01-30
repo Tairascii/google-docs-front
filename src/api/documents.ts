@@ -2,10 +2,10 @@ import { getApiPath } from '@/utils/getApiPath'
 import axiosConfig from './config'
 import { ApiVersionEnum } from '@/enums/ApiVersion'
 import { ApiServiceEnum } from '@/enums/ApiService'
-import { GoogleDocument } from './types'
+import { DataWrapper, GoogleDocument } from './types'
 
 export const getDocuments = async (): Promise<GoogleDocument[]> => {
-  const response = await axiosConfig<GoogleDocument[]>({
+  const response = await axiosConfig<DataWrapper<GoogleDocument[]>>({
     url: getApiPath({
       version: ApiVersionEnum.V1,
       service: ApiServiceEnum.DOCUMENTS,
@@ -14,14 +14,14 @@ export const getDocuments = async (): Promise<GoogleDocument[]> => {
     method: 'GET',
   })
 
-  return response.data
+  return response.data.data
 }
 
 export const createDocument = async (
   title?: string,
   initialContent?: string
 ): Promise<string> => {
-  const response = await axiosConfig<{ documentId: string }>({
+  const response = await axiosConfig<DataWrapper<{ documentId: string }>>({
     url: getApiPath({
       version: ApiVersionEnum.V1,
       service: ApiServiceEnum.DOCUMENTS,
@@ -34,5 +34,5 @@ export const createDocument = async (
     },
   })
 
-  return response.data.documentId
+  return response.data.data.documentId
 }

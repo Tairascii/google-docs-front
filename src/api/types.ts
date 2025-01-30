@@ -1,6 +1,10 @@
+export interface DataWrapper<T> {
+  data: T
+}
+
 export interface Tokens {
-  access: string
-  refresh: string
+  accessToken: string
+  refreshToken: string
 }
 
 export interface GoogleDocument {

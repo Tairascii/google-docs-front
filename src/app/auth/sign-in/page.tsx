@@ -1,12 +1,16 @@
 'use client'
 
 import clsx from 'clsx'
-import styles from './page.module.scss'
+import { setCookie } from 'typescript-cookie'
 import { useState } from 'react'
 import { SignInData } from '@/api/types'
 import { signIn } from '@/api/auth'
+import { useRouter } from 'next/navigation'
+import { UrlEnum } from '@/enums/UrlEnum'
+import styles from './page.module.scss'
 
 const SignInPage = () => {
+  const router = useRouter()
   const [form, setForm] = useState<SignInData>({
     email: '',
     password: '',
@@ -17,8 +21,14 @@ const SignInPage = () => {
   }
 
   const onSubmit = async () => {
-    const tokens = await signIn(form)
-    //TODO set to localstorage or cookies token
+    try {
+      const tokens = await signIn(form)
+      setCookie('accessToken', tokens.data.accessToken)
+      setCookie('refreshToken', tokens.data.refreshToken)
+      router.push(UrlEnum.HOME)
+    } catch (err) {
+      console.log(err)
+    }
   }
 
   return (
