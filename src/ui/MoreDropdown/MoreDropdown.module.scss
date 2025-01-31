@@ -1,0 +1,33 @@
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  margin-left: auto;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+
+  &:hover {
+    background-color: #4145491b;
+  }
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+}
+
+.content {
+  margin-top: 10px;
+  padding: 6px 0;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, .2);
+  background-color: #fff;
+  z-index: 1;
+}
+

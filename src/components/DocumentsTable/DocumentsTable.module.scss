@@ -43,6 +43,7 @@
 }
 
 .docRow {
+  padding-right: 16px;
   text-decoration: none;
   border-radius: 24px;
   display: flex;
@@ -65,4 +66,30 @@
   line-height: 20px;
   font-size: 14px;
   font-weight: 400;
+}
+
+.dropdownRow {
+  background-color: transparent;
+  border: none;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 8px 0;
+  padding-left: 16px;
+  padding-right: 78px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: rgba(229, 229, 229, 80);
+  }
+}
+
+.dropdownIcon {
+  width: 24px;
+  height: 24px;
+}
+
+.dropdownRowTitle {
+  color: #333;
+  font-size: 14px;
 }
