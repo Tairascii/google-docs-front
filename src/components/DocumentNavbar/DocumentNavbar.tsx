@@ -9,7 +9,7 @@ const DocumentNavbar = () => {
   return (
     <nav className={styles.navbar}>
       <div className={styles.leftPart}>
-        <Link href={UrlEnum.DOCUMENTS}>
+        <Link href={UrlEnum.HOME}>
           <Image
             src="https://www.gstatic.com/images/branding/product/1x/docs_2020q4_48dp.png"
             alt="logo"
