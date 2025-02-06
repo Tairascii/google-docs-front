@@ -9,6 +9,7 @@ export const getApiPath = ({
   service,
   path,
 }: GetApiPathParams): string => {
+  //TODO change service before api after apigw
   const finalPath = `${process.env.NEXT_PUBLIC_API_URL}/api/${version}/${service}${path}`
 
   return finalPath
