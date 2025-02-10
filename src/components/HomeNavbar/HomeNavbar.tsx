@@ -3,8 +3,21 @@ import Link from 'next/link'
 import { UrlEnum } from '@/enums/UrlEnum'
 import styles from './HomeNavbar.module.scss'
 import { HomeSearch } from '../HomeSearch'
+import { useEffect, useState } from 'react'
+import { getUser } from '@/api/user'
+import { User } from '@/api/types'
 
 const HomeNavbar = () => {
+  const [profile, setProfile] = useState<User>()
+
+  useEffect(() => {
+    const getProfile = async () => {
+      const data = await getUser()
+      setProfile(data)
+    }
+    getProfile()
+  })
+  
   return (
     <nav className={styles.container}>
       <div className={styles.logo}>

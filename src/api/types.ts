@@ -11,12 +11,20 @@ export interface GoogleDocument {
   id: string
   title: string
   ownerId: string
-	initialContent: string
+  initialContent: string
   roomId: string
-	orgId: string
+  orgId: string
 }
 
 export interface SignInData {
   email: string
   password: string
+}
+
+export interface User {
+  id: string
+  name: string
+  email: string
+  profilePicUrl: string
+  createdAt: string
 }
