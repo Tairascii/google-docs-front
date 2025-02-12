@@ -1,3 +1,5 @@
+'use client'
+
 import Image from 'next/image'
 import Link from 'next/link'
 import { UrlEnum } from '@/enums/UrlEnum'
@@ -8,7 +10,7 @@ import { getUser } from '@/api/user'
 import { User } from '@/api/types'
 
 const HomeNavbar = () => {
-  const [profile, setProfile] = useState<User>()
+  const [profile, setProfile] = useState<User | null>(null)
 
   useEffect(() => {
     const getProfile = async () => {
@@ -16,8 +18,8 @@ const HomeNavbar = () => {
       setProfile(data)
     }
     getProfile()
-  })
-  
+  }, [])
+
   return (
     <nav className={styles.container}>
       <div className={styles.logo}>
@@ -32,7 +34,13 @@ const HomeNavbar = () => {
         <h3 className={styles.title}>Docs</h3>
       </div>
       <HomeSearch />
-      <div />
+      <div className={styles.pfpWrapper}>
+        {profile?.profilePicUrl ? (
+          <Image width={32} height={32} src={profile.profilePicUrl} alt="pfp" />
+        ) : (
+          <span className={styles.placeholderImage}>{profile?.name[0]}</span>
+        )}
+      </div>
     </nav>
   )
 }
