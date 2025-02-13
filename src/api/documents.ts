@@ -3,6 +3,8 @@ import axiosConfig from './config'
 import { ApiVersionEnum } from '@/enums/ApiVersion'
 import { ApiServiceEnum } from '@/enums/ApiService'
 import { DataWrapper, GoogleDocument } from './types'
+import * as Y from 'yjs'
+import { WebsocketProvider } from 'y-websocket'
 
 export const getDocuments = async (
   search: string = ''
@@ -50,3 +52,12 @@ export const deleteDocument = async (id: string) => {
     method: 'DELETE',
   })
 }
+
+// export const documentWSProvider = (
+//   id: string,
+//   doc: Y.Doc
+// ): WebsocketProvider => {
+  
+
+//   return provider
+// }

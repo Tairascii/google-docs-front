@@ -20,9 +20,24 @@ import Highlight from '@tiptap/extension-highlight'
 import TextAlign from '@tiptap/extension-text-align'
 import Link from '@tiptap/extension-link'
 import { useEditorStore } from '@/store/useEditorStore'
+import { Collaboration } from '@tiptap/extension-collaboration'
+import * as Y from 'yjs'
 import { Ruler } from '../Ruler'
 import styles from './Editor.module.scss'
+import { WebsocketProvider } from 'y-websocket'
+import { getApiPath } from '@/utils/getApiPath'
+import { ApiVersionEnum } from '@/enums/ApiVersion'
 
+const ydoc = new Y.Doc()
+const provider = new WebsocketProvider(
+  getApiPath({
+    version: ApiVersionEnum.V1,
+    service: 'document',
+    path: '/ws',
+  }),
+  '0161cded-5aa1-486b-9bb9-de856939bc91',
+  ydoc
+)
 export const Editor = () => {
   const { setEditor } = useEditorStore()
 
@@ -77,6 +92,7 @@ export const Editor = () => {
         types: ['heading', 'paragraph'],
       }),
       Highlight.configure({ multicolor: true }),
+      Collaboration.configure({ document: ydoc }),
     ],
     editorProps: {
       attributes: {
