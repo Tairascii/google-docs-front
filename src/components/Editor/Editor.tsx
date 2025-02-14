@@ -38,6 +38,11 @@ const provider = new WebsocketProvider(
   '0161cded-5aa1-486b-9bb9-de856939bc91',
   ydoc
 )
+
+ydoc.on('update', () => {
+  console.log('received update')
+})
+
 export const Editor = () => {
   const { setEditor } = useEditorStore()
 
