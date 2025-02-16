@@ -16,7 +16,6 @@ const LinkButton = ({ onLinkChange, currentLink }: LinkButtonProps) => {
     setValue(currentLink)
   }, [currentLink])
 
-  // TODO styles this properly
   return (
     <Root>
       <Trigger className={styles.button}>
@@ -28,8 +27,11 @@ const LinkButton = ({ onLinkChange, currentLink }: LinkButtonProps) => {
           placeholder="Search or paste link here"
           value={value}
           onChange={(e) => setValue(e.target.value)}
+          className={styles.input}
         />
-        <button onClick={() => onLinkChange(value)}>Apply</button>
+        <button onClick={() => onLinkChange(value)} className={styles.apply}>
+          Apply
+        </button>
       </Content>
     </Root>
   )
